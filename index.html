@@ -18,17 +18,19 @@
         
         body { background-color: var(--bg-color); color: var(--text-light); line-height: 1.6; }
         
-        header { padding: 2rem; text-align: center; border-bottom: 2px solid var(--accent); }
-        header img { max-width: 250px; }
-        
-        .announcements { background-color: var(--accent); color: var(--text-light); text-align: center; padding: 10px; font-weight: bold; }
-        .announcements a { color: var(--primary); text-decoration: none; margin-left: 10px;}
+        /* Header & Announcements */
+        .announcements { background-color: var(--accent); color: var(--text-light); text-align: center; padding: 10px; font-weight: bold; font-size: 0.9rem; }
+        .announcements a { color: var(--primary); text-decoration: none; margin-left: 5px;}
         .announcements a:hover { text-decoration: underline; }
 
+        header { padding: 2rem 1rem; text-align: center; border-bottom: 2px solid var(--accent); }
+        header h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 0.5rem; }
+        header p { color: var(--text-muted); font-size: 1.1rem; }
+        
         .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-        .section-title { text-align: center; color: var(--primary); margin-bottom: 2rem; font-size: 2.5rem; }
+        .section-title { text-align: center; color: var(--primary); margin-bottom: 2rem; font-size: 2.2rem; }
 
-        /* Event Cards Grid */
+        /* Event Cards Grid - Fluid by default */
         .events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
         
         .card { 
@@ -40,19 +42,21 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 100%;
         }
         
-        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); border-top-color: var(--secondary); }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); border-top-color: var(--secondary); }
         
-        .card h3 { color: var(--primary); font-size: 1.5rem; margin-bottom: 1rem; }
-        .card p { margin-bottom: 0.5rem; font-size: 0.95rem; }
-        .card .highlight { color: var(--secondary); font-weight: bold; }
+        .card h3 { color: var(--primary); font-size: 1.4rem; margin-bottom: 1rem; }
+        .card p { margin-bottom: 0.6rem; font-size: 0.95rem; }
+        .card .highlight { color: var(--secondary); font-weight: bold; font-size: 1.05rem; margin-top: 10px; }
         
         .btn-group { display: flex; gap: 10px; margin-top: 1.5rem; }
         
         .btn { 
-            flex: 1; padding: 10px; text-align: center; border: none; border-radius: 6px; 
-            cursor: pointer; font-weight: bold; transition: background 0.3s ease; text-decoration: none;
+            flex: 1; padding: 12px; text-align: center; border: none; border-radius: 6px; 
+            cursor: pointer; font-weight: bold; transition: all 0.3s ease; text-decoration: none; font-size: 0.95rem;
+            display: inline-flex; align-items: center; justify-content: center;
         }
         .btn-primary { background-color: var(--primary); color: #000; }
         .btn-primary:hover { background-color: var(--accent); color: #fff; }
@@ -60,27 +64,56 @@
         .btn-secondary:hover { background-color: var(--secondary); color: #fff; }
 
         /* Modal Styles */
-        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); }
-        .modal-content { background-color: #2f3032; margin: 5% auto; padding: 2rem; border-radius: 12px; width: 90%; max-width: 500px; border-top: 4px solid var(--primary); }
-        .close { color: var(--text-muted); float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); overflow-y: auto; }
+        .modal-content { background-color: #2f3032; margin: 5vh auto; padding: 2.5rem; border-radius: 12px; width: 90%; max-width: 500px; border-top: 4px solid var(--primary); position: relative; }
+        .close { color: var(--text-muted); position: absolute; top: 15px; right: 20px; font-size: 30px; font-weight: bold; cursor: pointer; line-height: 1;}
         .close:hover { color: var(--text-light); }
         
         form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
-        input, select { padding: 12px; border-radius: 6px; border: 1px solid var(--accent); background: var(--bg-color); color: white; }
+        input, select { padding: 14px; border-radius: 6px; border: 1px solid var(--accent); background: #1e1f20; color: white; font-size: 1rem; }
+        input:focus { outline: none; border-color: var(--primary); }
         
-        .qr-section { text-align: center; margin: 20px 0; padding: 15px; border: 2px dashed var(--accent); border-radius: 8px;}
-        .qr-section img { max-width: 200px; margin-top: 10px; }
+        .qr-section { text-align: center; margin: 15px 0; padding: 20px; border: 2px dashed var(--accent); border-radius: 8px; background-color: rgba(140, 95, 26, 0.1); }
+        .qr-section img { max-width: 180px; margin: 15px auto; border-radius: 8px; border: 4px solid #fff; display: block; }
+        .qr-section p { margin-bottom: 5px; }
+
+        /* =========================================
+           RESPONSIVE MEDIA QUERIES
+           ========================================= */
+        
+        /* Mobile Devices (Phones) */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .container { padding: 1.5rem 1rem; }
+            .section-title { font-size: 1.8rem; margin-bottom: 1.5rem; }
+            
+            .events-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            
+            .btn-group { flex-direction: column; }
+            .btn { width: 100%; padding: 14px; }
+            
+            .modal-content { padding: 1.5rem; margin: 10vh auto; }
+            .qr-section img { max-width: 150px; }
+            .announcements { font-size: 0.8rem; padding: 8px; }
+        }
+
+        /* Tablets (iPads, smaller laptops) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .events-grid { grid-template-columns: repeat(2, 1fr); }
+            header h1 { font-size: 2.2rem; }
+        }
+
     </style>
 </head>
 <body>
 
     <div class="announcements">
-        📺 Live Stream on YouTube | 🏏 Download & Register on <a href="https://cricheroes.com/" target="_blank">CricHeroes App</a>
+        📺 Live Stream on YouTube | 🏏 Download & Register on <a href="https://cricheroes.com/" target="_blank">CricHeroes</a>
     </div>
 
     <header>
-        <h1 style="color: var(--primary);">Catalyst Youth Commune</h1>
-        <p style="color: var(--text-muted);">Empowering Youth through Sports & E-Sports</p>
+        <h1>Catalyst Youth Commune</h1>
+        <p>Empowering Youth through Sports & E-Sports</p>
     </header>
 
     <div class="container">
@@ -147,7 +180,7 @@
     <div id="regModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2 id="modalEventTitle" style="color: var(--primary);">Register for Event</h2>
+            <h2 id="modalEventTitle" style="color: var(--primary); font-size: 1.5rem; margin-right: 20px;">Register</h2>
             
             <form id="registrationForm" onsubmit="submitForm(event)">
                 <input type="text" id="teamName" placeholder="Team Name" required>
@@ -155,14 +188,16 @@
                 <input type="tel" id="contactNumber" placeholder="WhatsApp Number" required>
                 
                 <div class="qr-section">
-                    <p>Scan to Pay: <strong id="modalFee" style="color: var(--secondary);">₹0</strong></p>
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=rohitsbhoyar-4@okaxis&pn=CatalystCommune&cu=INR" alt="UPI QR Code">
-                    <p style="font-size: 0.8rem; margin-top: 10px; color: var(--text-muted);">Please attach payment screenshot below</p>
+                    <p>Scan to Pay: <strong id="modalFee" style="color: var(--secondary); font-size: 1.2rem;">₹3000</strong></p>
+                    
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi%3A%2F%2Fpay%3Fpa%3DYOUR_UPI_ID%40okaxis%26pn%3DCatalystCommune%26am%3D3000%26cu%3DINR" alt="UPI QR Code - Rs 3000">
+                    
+                    <p style="font-size: 0.85rem; margin-top: 10px; color: var(--text-muted);">Amount is locked at ₹3000. Paste Transaction ID below after successful payment.</p>
                 </div>
 
-                <input type="text" id="transactionId" placeholder="UPI Transaction ID (Required)" required>
+                <input type="text" id="transactionId" placeholder="UPI Transaction / UTR ID (Required)" required>
                 
-                <button type="submit" class="btn btn-primary">Submit Registration</button>
+                <button type="submit" class="btn btn-primary" style="margin-top: 5px;">Submit Registration</button>
             </form>
         </div>
     </div>
@@ -174,10 +209,14 @@
             document.getElementById("modalEventTitle").innerText = `Register for ${eventName}`;
             document.getElementById("modalFee").innerText = `₹${fee}`;
             modal.style.display = "block";
+            // Prevent background scrolling when modal is open on mobile
+            document.body.style.overflow = "hidden"; 
         }
 
         function closeModal() {
             modal.style.display = "none";
+            // Restore background scrolling
+            document.body.style.overflow = "auto"; 
         }
 
         // Close if clicked outside the box
@@ -196,7 +235,6 @@
                 transactionId: document.getElementById('transactionId').value
             };
 
-            // This hits the Node.js backend
             try {
                 const response = await fetch('http://localhost:3000/api/register', {
                     method: 'POST',
