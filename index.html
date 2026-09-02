@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalyst Youth Commune</title>
+    <style>
+        :root {
+            --primary: #E6AB53;
+            --secondary: #538EE6;
+            --accent: #8C5F1A;
+            --bg-color: #242526;
+            --text-light: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { background-color: var(--bg-color); color: var(--text-light); line-height: 1.6; }
+        
+        header { padding: 2rem; text-align: center; border-bottom: 2px solid var(--accent); }
+        header img { max-width: 250px; }
+        
+        .announcements { background-color: var(--accent); color: var(--text-light); text-align: center; padding: 10px; font-weight: bold; }
+        .announcements a { color: var(--primary); text-decoration: none; margin-left: 10px;}
+        .announcements a:hover { text-decoration: underline; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .section-title { text-align: center; color: var(--primary); margin-bottom: 2rem; font-size: 2.5rem; }
+
+        /* Event Cards Grid */
+        .events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        
+        .card { 
+            background: #2f3032; 
+            border-radius: 12px; 
+            padding: 1.5rem; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            border-top: 4px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); border-top-color: var(--secondary); }
+        
+        .card h3 { color: var(--primary); font-size: 1.5rem; margin-bottom: 1rem; }
+        .card p { margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .card .highlight { color: var(--secondary); font-weight: bold; }
+        
+        .btn-group { display: flex; gap: 10px; margin-top: 1.5rem; }
+        
+        .btn { 
+            flex: 1; padding: 10px; text-align: center; border: none; border-radius: 6px; 
+            cursor: pointer; font-weight: bold; transition: background 0.3s ease; text-decoration: none;
+        }
+        .btn-primary { background-color: var(--primary); color: #000; }
+        .btn-primary:hover { background-color: var(--accent); color: #fff; }
+        .btn-secondary { background-color: transparent; border: 2px solid var(--secondary); color: var(--secondary); }
+        .btn-secondary:hover { background-color: var(--secondary); color: #fff; }
+
+        /* Modal Styles */
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); }
+        .modal-content { background-color: #2f3032; margin: 5% auto; padding: 2rem; border-radius: 12px; width: 90%; max-width: 500px; border-top: 4px solid var(--primary); }
+        .close { color: var(--text-muted); float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close:hover { color: var(--text-light); }
+        
+        form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+        input, select { padding: 12px; border-radius: 6px; border: 1px solid var(--accent); background: var(--bg-color); color: white; }
+        
+        .qr-section { text-align: center; margin: 20px 0; padding: 15px; border: 2px dashed var(--accent); border-radius: 8px;}
+        .qr-section img { max-width: 200px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="announcements">
+        📺 Live Stream on YouTube | 🏏 Download & Register on <a href="https://cricheroes.com/" target="_blank">CricHeroes App</a>
+    </div>
+
+    <header>
+        <h1 style="color: var(--primary);">Catalyst Youth Commune</h1>
+        <p style="color: var(--text-muted);">Empowering Youth through Sports & E-Sports</p>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Upcoming Events</h2>
+        
+        <div class="events-grid">
+            <div class="card">
+                <div>
+                    <h3>🏆 Turf Royale (Season 1)</h3>
+                    <p><strong>Sport:</strong> Turf Cricket</p>
+                    <p><strong>Date:</strong> 27th Sept, 2026</p>
+                    <p><strong>Time:</strong> 7:00 AM to 7:00 PM</p>
+                    <p><strong>Venue:</strong> The Battleground Turf</p>
+                    <p><strong>Squad:</strong> 7 Playing (Max 8 in squad)</p>
+                    <p class="highlight">Entry Fee: ₹3000 / Team</p>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="openModal('Turf Royale Season 1', 3000)">Register Now</button>
+                    <a href="guidelines.pdf" download class="btn btn-secondary">Guidelines (PDF)</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <h3>🎮 PlayStation Showdown</h3>
+                    <p><strong>Sport:</strong> FIFA & Mortal Kombat</p>
+                    <p><strong>Date:</strong> Coming Soon</p>
+                    <p><strong>Venue:</strong> TBD</p>
+                    <p class="highlight">Stay Tuned!</p>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" style="opacity: 0.5; cursor: not-allowed;" disabled>Opening Soon</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <h3>⚽ Futsal Frenzy</h3>
+                    <p><strong>Sport:</strong> 5v5 Football</p>
+                    <p><strong>Date:</strong> Coming Soon</p>
+                    <p><strong>Venue:</strong> TBD</p>
+                    <p class="highlight">Stay Tuned!</p>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" style="opacity: 0.5; cursor: not-allowed;" disabled>Opening Soon</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div>
+                    <h3>🏓 Pickleball Clash</h3>
+                    <p><strong>Sport:</strong> Doubles Pickleball</p>
+                    <p><strong>Date:</strong> Coming Soon</p>
+                    <p><strong>Venue:</strong> TBD</p>
+                    <p class="highlight">Stay Tuned!</p>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" style="opacity: 0.5; cursor: not-allowed;" disabled>Opening Soon</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="regModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalEventTitle" style="color: var(--primary);">Register for Event</h2>
+            
+            <form id="registrationForm" onsubmit="submitForm(event)">
+                <input type="text" id="teamName" placeholder="Team Name" required>
+                <input type="text" id="captainName" placeholder="Captain's Name" required>
+                <input type="tel" id="contactNumber" placeholder="WhatsApp Number" required>
+                
+                <div class="qr-section">
+                    <p>Scan to Pay: <strong id="modalFee" style="color: var(--secondary);">₹0</strong></p>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=rohitsbhoyar-4@okaxis&pn=CatalystCommune&cu=INR" alt="UPI QR Code">
+                    <p style="font-size: 0.8rem; margin-top: 10px; color: var(--text-muted);">Please attach payment screenshot below</p>
+                </div>
+
+                <input type="text" id="transactionId" placeholder="UPI Transaction ID (Required)" required>
+                
+                <button type="submit" class="btn btn-primary">Submit Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("regModal");
+
+        function openModal(eventName, fee) {
+            document.getElementById("modalEventTitle").innerText = `Register for ${eventName}`;
+            document.getElementById("modalFee").innerText = `₹${fee}`;
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Close if clicked outside the box
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        async function submitForm(e) {
+            e.preventDefault();
+            const data = {
+                teamName: document.getElementById('teamName').value,
+                captainName: document.getElementById('captainName').value,
+                contactNumber: document.getElementById('contactNumber').value,
+                transactionId: document.getElementById('transactionId').value
+            };
+
+            // This hits the Node.js backend
+            try {
+                const response = await fetch('http://localhost:3000/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if(response.ok) {
+                    alert('Registration submitted successfully! We will verify the payment and contact you on WhatsApp.');
+                    closeModal();
+                    document.getElementById("registrationForm").reset();
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Server error. Make sure your backend is running.');
+            }
+        }
+    </script>
+</body>
+</html>
